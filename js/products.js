@@ -21,14 +21,14 @@ var getJSONData = function (url) {
       return result;
     });
 }
-function showCategoriesList(array){
+function showList(array){
 
   let htmlContentToAppend = "";
   for(let i = 0; i < array.length; i++){
       let category = array[i];
 
       htmlContentToAppend += `
-      <div class="list-group-item list-group-item-action">
+      <div class="list-item list-item-action">
           <div class="row">
               <div class="col-3">
                   <img src="` + category.imgSrc + `" alt="` + category.description + `" class="img-thumbnail">                  
@@ -53,6 +53,6 @@ document.addEventListener("DOMContentLoaded",
   getJSONData(PRODUCTS_URL).then(function (resultObj) {
     if (resultObj.status === "ok") {
       carlist = resultObj.data;
-          showCategoriesList(carlist);
+          showList(carlist);
     }
   }));
