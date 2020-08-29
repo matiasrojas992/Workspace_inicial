@@ -139,3 +139,20 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+p.plog {
+  
+    height: 25px;
+    
+     display: block;
+    position: absolute;
+   
+    height: 25px;
+    margin: top 6px; left:800px;
+    color: rgba(5, 214, 197, 0.63);
+  
+    
+}
+#divbuscar{
+  margin-left: auto;
+
+}
