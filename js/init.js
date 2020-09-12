@@ -46,8 +46,5 @@ var getJSONData = function(url){
 document.addEventListener("DOMContentLoaded", function(e){
 });
 // setea el dato del usuario en el span de id user
-var l_user = localStorage.getItem("user");
+const l_user = localStorage.getItem("user");
       
-/*Mostrar datos almacenados*/      
-document.getElementById("us").innerHTML = l_user;
-//localStorage.getItem("user")

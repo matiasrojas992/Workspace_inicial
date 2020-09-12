@@ -29,7 +29,7 @@ var minCount = undefined;
 var maxCount = undefined;
 var currentSortCriteria = "";
 var categoriesArray = [];
-var row = []; 
+var row = [];
 
 //Funcion para filtar(estan todas juntas, Criteria es el parametro que las diferencia)
 function sortProducts(criteria, array) {
@@ -76,11 +76,12 @@ function showList(array) {
     if (((minCount == undefined) || (minCount != undefined && parseInt(products.cost) >= minCount)) &&
       ((maxCount == undefined) || (maxCount != undefined && parseInt(products.cost) <= maxCount))) {
 
-        //COMENTARIO: CAMBIÉ LA LÍNEA 81, ANTES ERA  <div class="row">
-        //AHORA ES <div class="row" data-filter-name="`+products.name+`" data-filter-desc="`+products.description+`" > 
+      //COMENTARIO: CAMBIÉ LA LÍNEA 81, ANTES ERA  <div class="row">
+      //AHORA ES <div class="row" data-filter-name="`+products.name+`" data-filter-desc="`+products.description+`" > 
       htmlContentToAppend += `
-      <div class="list-item list-item-action">
-        <div class="row" data-filter-name="`+products.name+`" data-filter-desc="`+products.description+`" >
+      <a href="product-info.html" class="list-group-item-action">       
+           <div class="list-group-item list-group-item-action">
+           <div class="row" data-filter-name="`+ products.name + `" data-filter-desc="` + products.description + `" >
               <div class="col-3">
                   <img src="` + products.imgSrc + `" alt="` + products.description + `" class="img-thumbnail">                  
               </div>
@@ -121,23 +122,23 @@ function sortAndShowProducts(sortCriteria, categoriesArray) {
 //elementos HTML presentes.
 
 
-var row = []; 
+var row = [];
 
 document.addEventListener("DOMContentLoaded", function (e) {
   getJSONData(PRODUCTS_URL).then(function (resultObj) {
     if (resultObj.status === "ok") {
       sortAndShowProducts(PRODUCTS_ORDEN_ASC, resultObj.data);
     }
-    row =document.getElementById("containerListCar").getElementsByClassName("row"); 
+    row = document.getElementById("containerListCar").getElementsByClassName("row");
   });
   //buscador
-document.getElementById("buscar").addEventListener("keyup", function () {
+  document.getElementById("buscar").addEventListener("keyup", function () {
     buscador(row);
   });
 
   document.getElementById("sortAsc").addEventListener("click", function () {
     sortAndShowProducts(PRODUCTS_ORDEN_ASC);
-  });  
+  });
 
   document.getElementById("sortDesc").addEventListener("click", function () {
     sortAndShowProducts(PRODUCTS_ORDEN_DESC);
@@ -186,18 +187,16 @@ document.getElementById("buscar").addEventListener("keyup", function () {
 function buscador(row) {
   // Declare variable
   filtradotexto = document.getElementById("buscar").value.toUpperCase();
-  
+
   for (i = 0; i < row.length; i++) {
-    
-    if (row[i].dataset.filterName.toUpperCase().includes(filtradotexto) || row[i].dataset.filterDesc.toUpperCase().includes(filtradotexto)) 
-    {
-      row[i].parentNode.style.display = "";     
-     
+
+    if (row[i].dataset.filterName.toUpperCase().includes(filtradotexto) || row[i].dataset.filterDesc.toUpperCase().includes(filtradotexto)) {
+      row[i].parentNode.style.display = "";
+
     } else {
       row[i].parentNode.style.display = "none";
-      
+
     }
   }
 }
-
 

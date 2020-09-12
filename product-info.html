@@ -27,23 +27,93 @@
        <a class="py-2 d-none d-md-inline-block" href="my-profile.html">Usuario: <span id="us"></span></a>
     </div>
   </nav>
-  
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 3 (Fecha de entrega: 13/09/2020) y Entrega 4 (Fecha de entrega: 20/09/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
-  </div>
+  <!-- Caterorias del producto -->  
   <footer class="text-muted">
     <div class="container">
-      <p class="float-right">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+      <h3 id="productName"></h3>
+    <hr class="my-3">
+    <dl>
+      <dt>Precio</dt>
+      <dd>
+        <span id="currencyProduct"></span>  <span id="productCost"></span>
+      </dd>
+
+      <dt>Descripción</dt>
+      <dd>
+        <p id="productDescription"></p>
+      </dd>
+
+      <dt>Categoría</dt>
+      <dd>
+        <p id="productCategory"></p>
+      </dd>
+
+      <dt>Cantidad de vendidos</dt>
+      <dd>
+        <p id="productSoldCount"></p>
+      </dd>
+
+      <dt>Imágenes ilustrativas</dt>
+      <dd>
+        <div class="row text-center text-lg-left pt-2" id="productImagesWrapper">
+        </div>
+      </dd>
+
+      <dt>Raiting</dt>
+      <hr class="my-3">
+      <dd>
+        <div class="container-fluid">
+          <div class="row" id="rating">
+          </div>
+        </div>
+      </dd>  
+
+      <dt>Productos relacionados</dt>
+      <hr class="my-3">
+      <dd>
+        <div class="container-fluid">
+          <div class="row" id="relatedPrductContainer">
+          </div>
+        </div>
+      </dd>
+      
+      <dt>Comentarios</dt>
+      <hr>
+      <dd>
+        <div>
+          <div id="comentarios">
+          </div>
+        </div>
+      </dd>  
+      <!-- Muestra el nuevo comentario mas el usuario -->  
+      <dd>
+        <li class="media">
+          <div class="media-body">           
+            <b> <label class="mt-0" id="coment">                                      
+          </label><b>
+          <br>
+          <label class="small" id="coment2"></label> 
+          <label class="small" id="valoracion"></label>        
+          <hr>
+          </div>                              
+      </li>                           
+      </dd>  
+      <form action="product-info.html">
+      <!-- Calificacion -->  
+      <dt>Califica el producto</dt>      
+      <hr class="my-3">
+      <!-- Comentarios -->      
+      <input id="clasificacion" type="number" name="estrellas" max="5" min="1" required>
+      <label for="radio1" ></label>      
+      <dt>Escribe aquí tu comentario y califica el producto</dt>
+      <textarea name="comentarios" rows="5" cols="40" id="comentario" required></textarea><br>      
+      <input type="submit" id="btn" name="btn" value="Enviar" onclick="guardarComentario(comentario.value)||guardarComentario(clasificacion.value)">    
+      </form>        
+    </dl>
+  </div>
     </div>
+  </div>
+    </div>    
   </footer>
   <div id="spinner-wrapper">
     <div class="lds-ring">
@@ -52,7 +122,7 @@
       <div></div>
       <div></div>
     </div>
-  </div>
+    
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
