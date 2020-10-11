@@ -1,6 +1,3 @@
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
 let arrayArticles=[]
 let subtotaltotal=0;
 // Se crea función que clasifica los subtotales según currency para que de esa manera que el valor en una única moneda en este caso son pesos uruguayos
