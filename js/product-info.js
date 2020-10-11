@@ -5,14 +5,15 @@ var product = {};
 var productList = {};
 const maxRating = 5;
 
+//Funcion que mostraba las imagenes que fue sustituida 14/9 por el carousel
 function showImagesGallery(array) {
 
-    let htmlContentToAppend = "";
-
+    let htmlContentToImagen = "";
+   
     for (let i = 0; i < array.length; i++) {
         let imageSrc = array[i];
 
-        htmlContentToAppend += `
+        htmlContentToImagen = `
         <div class="col-lg-3 col-md-4 col-6">
             <div class="d-block mb-4 h-100">
                 <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
@@ -20,10 +21,9 @@ function showImagesGallery(array) {
         </div>
         `
 
-        document.getElementById("productImagesWrapper").innerHTML = htmlContentToAppend;
+        document.getElementById("productImagesWrapper").innerHTML = htmlContentToImagen;
     }
 }
-
 function showRating() {
     let score = product.rating;
     let stars = "";
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             showRating();
             //Muestro las imagenes en forma de galería
-            showImagesGallery(product.images);
+            //showImagesGallery(product.images);
             showRelatedProducts(product.relatedProducts);
                       
         }
@@ -102,7 +102,7 @@ function showRelatedProducts(relatedProductsArray) {
         }
     })
 }
-
+// Muestro los comentarios del JSON
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
