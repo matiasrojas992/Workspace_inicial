@@ -16,7 +16,12 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
+  <!-- Bootstrap para el modal -->
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+  <link href='https://use.fontawesome.com/releases/v5.8.1/css/all.css'>
+
 </head>
+
 
 <body>
   <nav class="site-header sticky-top py-1 bg-dark">
@@ -40,8 +45,9 @@
       </div>
     </div>
   </nav>
+
   <!--productos-->
-  <div class="container d-flex flex-column flex-md-row">
+  <div class="col-md-8">
     <table class="table">
       <thead>
         <tr>
@@ -51,46 +57,197 @@
           <th scope="col">Cantidad</th>
           <th scope="col">Subtotal</th>
         </tr>
+        <br>
+      <tbody id="cart-products"></tbody>
       </thead>
-      <tbody id="cart-products">
-      </tbody>
-    </table>
-  </div>
-  <!--Tipos de envios-->
-  <div class="row">
-    <div class="container d-flex flex-column flex-md-row">
-      <ul class="list-group mb-3">
-        <h4 class="mb-3">Tipos de envios</h4>
+
+
+      <!--Barra lateral-->
+      <div id="lateral" class="col-md-4">
+        <!--Tipos de envios-->
+        <div>
+          <div class="container d-flex flex-column ">
+            <ul class="list-group mb-3">
+              <h4 class="mb-3">Tipos de envios</h4>
 
 
 
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-          <label class="form-check-label" for="exampleRadios1">
-            Premium 2 a 5 días (15%)
-          </label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="premium" value="option1">
+                <label class="form-check-label" for="premium">
+                  Premium 2 a 5 días (15%)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="express" value="option2">
+                <label class="form-check-label" for="express">
+                  Express 5 a 8 días (7%)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="standard" value="option3">
+                <label class="form-check-label" for="standard">
+                  Standard 12 a 15 días (5%)
+                </label>
+              </div>
+            </ul>
+          </div>
+
+          <!--Direccion-->
+          <div class="container">
+            <div>
+              <div>
+                <h4 class="mb-3">Dirección</h4>
+                <form action="" id="direccionform">
+                  <input type="text" class="form-control" placeholder="Direccion" name="direccion" id="direccion">
+                  <label for="direccion"></label>
+
+                  <input type="text" class="form-control" placeholder="Número de puerta" name="puerta" id="puerta">
+                  <label for="puerta"></label>
+
+                  <input type="text" class="form-control" placeholder="Localidad" name="localidad" id="localidad">
+                  <label for="localidad"></label>
+
+                  <input type="text" class="form-control" placeholder="Departamento" name="departamento"
+                    id="departamento">
+                  <label for="departamento"></label>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!--Modal-->
+          <div class="container d-flex flex-column flex-md-row">
+            <div class="col">
+              <button type="button" class="btn btn-primary" onclick="validarDireccion()" data-toggle="modal" data-target=".bd-example-modal-lg">Forma
+                de
+                pago</button>
+
+              <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="container py-5">
+
+                      <div class="row mb-4">
+                        <div class="col-lg-8 mx-auto text-center">
+                          <h1 class="display-4">Ingresa tu forma de pago</h1>                          
+                        </div>                        
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-6 mx-auto">
+                          <div class="card ">
+                            <div class="card-header">
+                              <div>
+                                <!-- Credit card form tabs -->
+                                <div>
+                                  <ul>
+
+                                    <br />
+                                    <input name="intereses" type="radio" value="radio" id="tarjetacheck" />Tarjeta
+                                    Crédito
+                                    <br />
+                                    <br />
+                                    <input name="intereses" type="radio" value="radio2" id="cuentaboton"  />Cuenta
+                                    Bancaria
+                                    <br />
+                                    <div class="col-sm-4 mx-auto text-center">
+                                      <span id="valdireccion"></span>
+                                    </div>   
+                                    <div>
+                                      <span id="cualquiera"></span>
+                                    </div>
+                                  </ul>
+                                </div>
+                              </div> <!-- End -->
+                              <!-- Credit card form content -->
+                              <div class="tab-content">
+                                <!-- credit card info-->
+                                
+                                <div id="credit-card" class="tab-pane fade show active pt-3">
+                                  <form role="form" id="formtarjeta">
+                                    
+                                    <div class="form-group">
+                                      <label for="username">
+                                        <h6>Nombre del titular</h6>
+                                      </label>
+                                      <input type="text" name="username" placeholder="Nombre completo" required
+                                        class="form-control " id="nombre">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="cardNumber">
+                                        <h6>Número de tarjeta</h6>
+                                      </label>
+                                      <div class="input-group">
+                                        <input type="text" name="cardNumber" placeholder="Número de tarjeta" required
+                                          class="form-control " id="numerotarjeta">
+                                        <div class="input-group-append"> <span class="input-group-text text-muted"> <i
+                                              class="fab fa-cc-visa mx-1"></i> <i class="fab fa-cc-mastercard mx-1"></i>
+                                            <i class="fab fa-cc-amex mx-1"></i> </span> </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-sm-8">
+                                        <div class="form-group"> <label><span class="hidden-xs">
+                                              <h6>Datos de tarjeta</h6>
+                                            </span></label>
+
+                                          <div class="input-group"> <input type="tex" placeholder="MM/YY" name=""
+                                              id="vencimiento" class="form-control"> </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <div class="form-group mb-4"> <label data-toggle="tooltip"
+                                            title="Three digit CV code on the back of your card">
+                                            <h6>CVV <i class="fa fa-question-circle d-inline"></i></h6>
+                                          </label> <input type="text" required class="form-control" id="cvv"> </div>
+                                      </div>
+                                    </div>
+
+                                </div> <!-- End -->
+                                <div class="form-group">
+
+                                  <label for="numcuenta" id="numcuenta">Ingrese su número de cuenta:</label>
+                                  <div class="input-group"> <input type="text" name="cuentaNumber"
+                                      placeholder="Número de cuenta" class="form-control " id="numerodecuenta">
+                                    <br>
+                                  </div>
+
+                                </div>
+                                <button class="subscribe btn btn-primary btn-block shadow-sm" id="Ingresar"
+                                  type="button" > Ingresar </button>
+                                </form>
+
+                              </div>
+                            </div> <!-- End -->
+
+
+                          </div> <!-- End -->
+                          <!-- End -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-          <label class="form-check-label" for="exampleRadios2">
-            Express 5 a 8 días (7%)
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-          <label class="form-check-label" for="exampleRadios3">
-            Standard 12 a 15 días (5%)
-          </label>
-        </div>
-      </ul>
-
-    </div>
+      </div>
   </div>
+  <!-- End -->
 
   </div>
+
+  </tbody>
+
+  </table>
+
   </div>
+  <br>
+
   <!--Costos-->
-  <div class="container d-flex flex-column flex-md-row">
+  <div class="col-md-8">
     <div class="col">
       <h4 class="mb-3">Costos</h4>
       <ul class="list-group mb-3">
@@ -98,15 +255,17 @@
           <h5>SubTotal </h5><span id="subtotal"></span>
         </li>
         <li class="list-group-item justify-content-between d-flex">
+          <h5>Envío </h5><span id="envio"></span>
+        </li>
+
+        <li class="list-group-item justify-content-between d-flex">
           <h5>Total </h5><span id="total"></span>
         </li>
       </ul>
 
     </div>
   </div>
-
-  </div>
-  </div>
+ 
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -115,12 +274,16 @@
       <div></div>
     </div>
   </div>
-  
+  </div>
+  </div>
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  <!-- Scripts de Bootstrap para el modal -->
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 </body>
 
 </html>
